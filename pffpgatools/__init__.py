@@ -1,3 +1,3 @@
-# SPDX-FileCopyrightText: 2022-present Didier Malenfant
+# SPDX-FileCopyrightText: 2023-present Didier Malenfant
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: GPL-3.0-or-later
