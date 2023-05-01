@@ -14,14 +14,23 @@ openFPGA is a registered trademark of [**Analogue**](https://analogue.co).
 
 **pf-fpga-tools** requires at least [Python](https://python.org) 3.7. Make sure you have a [supported version](http://didier.malenfant.net/blog/nerdy/2022/08/17/installing-python.html) of **Python** before proceeding.
 
-You will also need following dependencies via [brew](https://brew.sh):
+You can then install **pf-fpga-tools** by typing the following in a terminal window:
+```console
+pip install pf-fpga-tools
+```
+
+### Installation (macOS)
+
+Also install the following tool dependencies via [brew](https://brew.sh):
 ```console
 brew install imagemagick
 ```
 
-You can then install **pf-fpga-tools** by typing the following in a terminal window:
-```console
-pip install pf-fpga-tools
+### Installation (Ubuntu Linux)
+
+Also install the following tool dependencies:
+```
+sudo apt install imagemagick
 ```
 
 ### Usage
