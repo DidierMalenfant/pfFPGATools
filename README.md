@@ -43,7 +43,9 @@ sudo apt install imagemagick
 
 - `pfConvertImage` - Convert an image for to the binary format used by the **Analog Pocket** for its cores and platform lists.
 
-- `pfReverseBitstream` - Converts an `rbf` bitstream file into an `rbd_r` reversed bitstream.
+- `pfReverseBitstream` - Converts an `rbf` bitstream file into an `rbf_r` reversed bitstream.
+
+- `pfCloneCoreTemplate` - Clone the core dev template from Github.
 
 You can use the `--help` argument to get some usage info for each command.
 
