@@ -79,6 +79,7 @@ class pfBuildCore:
                 sys.exit(0)
 
             self.destination_folder: str = arguments[1]
+            self.core_folder = os.path.join(self.destination_folder, '_core')
 
             self.dependency_count = 0
 
@@ -228,16 +229,17 @@ class pfBuildCore:
 
     def packageCore(self):
         deps = []
-        packaged_filename = self.packagedFilename()
+        packaged_filename = os.path.join('..', self.packagedFilename())
 
         arguments: List[str] = ['zip', '-r', packaged_filename]
-        for p in Path(self.destination_folder).rglob('*'):
-            extension = p.suffix
-            if not os.path.isdir(p) and not extension == '.zip' and not extension == '.d':
-                arguments.append(str(p.relative_to(self.destination_folder)))
-                deps.append(str(p))
+        for p in Path(self.core_folder).rglob('*'):
+            if os.path.isdir(p):
+                continue
 
-        Utils.shellCommand(arguments, from_dir=self.destination_folder)
+            arguments.append(str(p.relative_to(self.core_folder)))
+            deps.append(str(p))
+
+        Utils.shellCommand(arguments, from_dir=self.core_folder)
 
     def addDependency(self, dep_file, dep):
         if self.dependency_count == 0:
@@ -258,19 +260,19 @@ class pfBuildCore:
         return os.path.expandvars(self.getConfigParam('Bitstream', 'source'))
 
     def main(self) -> None:
-        os.makedirs(self.destination_folder, exist_ok=True)
+        os.makedirs(self.core_folder, exist_ok=True)
 
         full_platform_name = self.fullPlatformName()
-        cores_folder = os.path.join(self.destination_folder, 'Cores', full_platform_name)
+        cores_folder = os.path.join(self.core_folder, 'Cores', full_platform_name)
         os.makedirs(cores_folder, exist_ok=True)
 
-        platforms_folder = os.path.join(self.destination_folder, 'Platforms')
+        platforms_folder = os.path.join(self.core_folder, 'Platforms')
         os.makedirs(platforms_folder, exist_ok=True)
 
         platforms_image_folder = os.path.join(platforms_folder, '_images')
         os.makedirs(platforms_image_folder, exist_ok=True)
 
-        dependency_filename = os.path.join(self.destination_folder, 'deps.d')
+        dependency_filename = os.path.join(self.core_folder, 'deps.d')
         with open(dependency_filename, 'w') as dep_file:
             print('Building bitstream file...')
             bitstream_source = self.bitstreamFile()
