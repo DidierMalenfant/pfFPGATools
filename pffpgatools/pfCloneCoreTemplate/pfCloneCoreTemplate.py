@@ -5,12 +5,11 @@
 import os
 import sys
 import getopt
-import zipfile
-import tempfile
 import shutil
 
 from pffpgatools.__about__ import __version__
 from pffpgatools.utils import Utils
+from pffpgatools.exceptions import ArgumentError
 
 
 # -- Classes
@@ -22,9 +21,10 @@ class pfCloneCoreTemplate:
 
         try:
             self.branch_name = None
+            self.tag_name = None
 
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hvb:', ['help', 'version', 'branch='])
+            opts, arguments = getopt.getopt(args, 'hvb:t:', ['help', 'version', 'branch=', 'tag='])
 
             for o, a in opts:
                 if o in ('-h', '--help'):
@@ -34,11 +34,19 @@ class pfCloneCoreTemplate:
                     pfCloneCoreTemplate.printVersion()
                     sys.exit(0)
                 elif o in ('-b', '--branch'):
+                    if self.tag_name is not None:
+                        raise ArgumentError('Cannot specificy both a branch and a tag on the command line.')
+
                     self.branch_name = a
+                elif o in ('-t', '--tag'):
+                    if self.branch_name is not None:
+                        raise ArgumentError('Cannot specificy both a branch and a tag on the command line.')
+
+                    self.tag_name = a
 
             nb_of_arguments: int = len(arguments)
             if nb_of_arguments != 1:
-                raise RuntimeError('Invalid arguments. Maybe start with `pfCloneCoreTemplate --help?')
+                raise ArgumentError('Invalid arguments. Maybe start with `pfCloneCoreTemplate --help?')
 
             self.destination_folder: str = arguments[0]
 
@@ -61,6 +69,9 @@ class pfCloneCoreTemplate:
         if self.branch_name is not None:
             command_line.append('--branch')
             command_line.append(self.branch_name)
+        elif self.tag_name is not None:
+            command_line.append('--branch')
+            command_line.append(self.tag_name)
 
         command_line.append('https://github.com/DidierMalenfant/pf-core-template.git')
 
