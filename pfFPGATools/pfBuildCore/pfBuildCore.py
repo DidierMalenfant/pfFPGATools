@@ -294,7 +294,7 @@ class pfBuildCore:
 
         dependency_filename = os.path.join(self.destination_folder, 'deps.d')
         with open(dependency_filename, 'w') as dep_file:
-            print('Building bitstream file...')
+            print('Reversing bitstream file...')
             bitstream_source = self.bitstreamFile()
             bitstream_dest = os.path.join(cores_folder, '%s.rbf_r' % self.getShortName())
             Utils.shellCommand(['pfReverseBitstream', bitstream_source, bitstream_dest])
