@@ -243,7 +243,9 @@ class pfBuildCore:
 
     def packageCore(self):
         deps = []
-        packaged_filename = os.path.join('..', self.packagedFilename())
+        packaged_filename = os.path.abspath(os.path.join(self.destination_folder, self.packagedFilename()))
+        if os.path.exists(packaged_filename):
+            os.remove(packaged_filename)
 
         arguments: List[str] = ['zip', '-r', packaged_filename]
         for p in Path(self.core_folder).rglob('*'):
@@ -274,7 +276,11 @@ class pfBuildCore:
         return os.path.expandvars(self.getConfigParam('Bitstream', 'source'))
 
     def main(self) -> None:
-        os.makedirs(self.core_folder, exist_ok=True)
+        # -- We delete the core build folder in case stale files are in there (for example after changing the core config file)
+        if os.path.exists(self.core_folder):
+            shutil.rmtree(self.core_folder)
+
+        os.makedirs(self.core_folder)
 
         full_platform_name = self.fullPlatformName()
         cores_folder = os.path.join(self.core_folder, 'Cores', full_platform_name)
@@ -286,7 +292,7 @@ class pfBuildCore:
         platforms_image_folder = os.path.join(platforms_folder, '_images')
         os.makedirs(platforms_image_folder, exist_ok=True)
 
-        dependency_filename = os.path.join(self.core_folder, 'deps.d')
+        dependency_filename = os.path.join(self.destination_folder, 'deps.d')
         with open(dependency_filename, 'w') as dep_file:
             print('Building bitstream file...')
             bitstream_source = self.bitstreamFile()
