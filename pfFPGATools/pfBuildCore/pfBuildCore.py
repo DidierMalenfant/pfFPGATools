@@ -8,8 +8,8 @@ import getopt
 import shutil
 import traceback
 
-from pffpgatools.__about__ import __version__
-from pffpgatools.utils import Utils
+from pfFPGATools.__about__ import __version__
+from pfFPGATools.utils import Utils
 
 from datetime import date
 from pathlib import Path

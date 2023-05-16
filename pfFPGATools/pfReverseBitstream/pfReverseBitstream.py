@@ -6,7 +6,7 @@ import os
 import sys
 import getopt
 
-from pffpgatools.__about__ import __version__
+from pfFPGATools.__about__ import __version__
 
 
 # -- Classes

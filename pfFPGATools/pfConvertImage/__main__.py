@@ -5,8 +5,8 @@
 import sys
 import traceback
 
-from .pfBuildCore import pfBuildCore
-from pffpgatools.exceptions import ArgumentError
+from .pfConvertImage import pfConvertImage
+from pfFPGATools.exceptions import ArgumentError
 
 # -- This enables more debugging information for exceptions.
 _debug_on: bool = False
@@ -21,7 +21,7 @@ def main():
             _debug_on = True
 
         # -- Remove the first argument (which is the script filename)
-        pfBuildCore(sys.argv[1:]).main()
+        pfConvertImage(sys.argv[1:]).main()
     except ArgumentError as e:
         print(str(e))
     except Exception as e:

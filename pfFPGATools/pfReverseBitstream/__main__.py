@@ -5,8 +5,8 @@
 import sys
 import traceback
 
-from .pfCloneCoreTemplate import pfCloneCoreTemplate
-from pffpgatools.exceptions import ArgumentError
+from .pfReverseBitstream import pfReverseBitstream
+from pfFPGATools.exceptions import ArgumentError
 
 # -- This enables more debugging information for exceptions.
 _debug_on: bool = False
@@ -21,7 +21,7 @@ def main():
             _debug_on = True
 
         # -- Remove the first argument (which is the script filename)
-        pfCloneCoreTemplate(sys.argv[1:]).main()
+        pfReverseBitstream(sys.argv[1:]).main()
     except ArgumentError as e:
         print(str(e))
     except Exception as e:

@@ -6,7 +6,7 @@ import sys
 import traceback
 
 from .pfInstallCore import pfInstallCore
-from pffpgatools.exceptions import ArgumentError
+from pfFPGATools.exceptions import ArgumentError
 
 # -- This enables more debugging information for exceptions.
 _debug_on: bool = False

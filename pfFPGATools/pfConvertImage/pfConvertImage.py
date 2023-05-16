@@ -7,8 +7,8 @@ import sys
 import getopt
 import traceback
 
-from pffpgatools.__about__ import __version__
-from pffpgatools.utils import Utils
+from pfFPGATools.__about__ import __version__
+from pfFPGATools.utils import Utils
 
 from PIL import Image
 
