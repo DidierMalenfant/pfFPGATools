@@ -79,6 +79,10 @@ class pfCloneCoreTemplate:
 
         Utils.shellCommand(command_line, from_dir=self.destination_folder, silent_mode=True)
 
+        git_folder = os.path.join(repo_folder, '.git')
+        if os.path.exists(git_folder):
+            shutil.rmtree(git_folder)
+
     @classmethod
     def printUsage(cls) -> None:
         pfCloneCoreTemplate.printVersion()
