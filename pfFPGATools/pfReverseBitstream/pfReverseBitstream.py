@@ -80,22 +80,3 @@ class pfReverseBitstream:
     @classmethod
     def printVersion(cls) -> None:
         print('🛠️  pfReverseBitstream v' + __version__ + ' 🛠️')
-
-
-def main():
-    try:
-        # -- Remove the first argument (which is the script filename)
-        build = pfReverseBitstream(sys.argv[1:])
-
-        if build is not None:
-            build.main()
-    except Exception as e:
-        print(e)
-        sys.exit(1)
-    except KeyboardInterrupt:
-        print('Execution interrupted by user.')
-        sys.exit(1)
-
-
-if __name__ == '__main__':
-    main()

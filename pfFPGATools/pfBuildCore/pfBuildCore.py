@@ -320,32 +320,3 @@ class pfBuildCore:
     @classmethod
     def printVersion(cls) -> None:
         print('🛠️  pfBuildCore v' + __version__ + ' 🛠️')
-
-
-def main():
-    _debug_on = False
-
-    try:
-        if '--debug' in sys.argv:
-            print('Enabling debugging information.')
-            _debug_on = True
-
-        # -- Remove the first argument (which is the script filename)
-        build = pfBuildCore(sys.argv[1:])
-
-        if build is not None:
-            build.main()
-    except Exception as e:
-        if _debug_on is True:
-            print(traceback.format_exc())
-        else:
-            print(e)
-
-        sys.exit(1)
-    except KeyboardInterrupt:
-        print('Execution interrupted by user.')
-        sys.exit(1)
-
-
-if __name__ == '__main__':
-    main()
