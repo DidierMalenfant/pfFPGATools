@@ -75,6 +75,7 @@ class pfReverseBitstream:
         print('')
         print('   --help/-h          - Show a help message.')
         print('   --version/-v       - Display the app\'s version.')
+        print('   --debug            - Enable extra debugging information.')
         print('')
 
     @classmethod
