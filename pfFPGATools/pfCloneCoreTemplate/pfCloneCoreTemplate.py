@@ -60,7 +60,7 @@ class pfCloneCoreTemplate:
         if Utils.commandExists('git') is False:
             raise RuntimeError('You must have git installed on your machine to continue.')
 
-        repo_folder = os.path.join(self.destination_folder, 'pf-core-template')
+        repo_folder = os.path.join(self.destination_folder, 'pfCoreTemplate')
         if os.path.exists(repo_folder):
             shutil.rmtree(repo_folder)
 
@@ -75,7 +75,7 @@ class pfCloneCoreTemplate:
             command_line.append('--branch')
             command_line.append(self.tag_name)
 
-        command_line.append('https://github.com/DidierMalenfant/pf-core-template.git')
+        command_line.append('https://github.com/DidierMalenfant/pfCoreTemplate.git')
 
         Utils.shellCommand(command_line, from_dir=self.destination_folder, silent_mode=True)
 
