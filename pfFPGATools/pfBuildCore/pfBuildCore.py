@@ -29,6 +29,8 @@ class pfBuildCore:
     def __init__(self, args):
         """Constructor based on command line arguments."""
 
+        self.short_name: str = None
+
         try:
             # -- Gather the arguments
             opts, arguments = getopt.getopt(args, 'hv', ['debug', 'help', 'version', 'corefilename', 'bitstreamfile', 'debug'])
@@ -101,6 +103,16 @@ class pfBuildCore:
 
         return param
 
+    def getShortName(self) -> str:
+        if self.short_name is None:
+            self.short_name = self.getConfigParam('Platform', 'short_name')
+
+            for c in self.short_name:
+                if (c.isalnum() is False) or c.isupper():
+                    raise RuntimeError('Platform short name should be lower-case and can only contain a-z, 0-9 or _.')
+
+        return self.short_name
+
     def generateDefinitionFiles(self, cores_folder, platforms_folder) -> None:
         output_filename = os.path.join(cores_folder, 'audio.json')
         with open(output_filename, 'w') as out_file:
@@ -165,7 +177,7 @@ class pfBuildCore:
             out_file.write('  }\n')
             out_file.write('}\n')
 
-        output_filename = os.path.join(platforms_folder, '%s.json' % (self.getConfigParam('Platform', 'short_name')))
+        output_filename = os.path.join(platforms_folder, '%s.json' % (self.getShortName()))
         with open(output_filename, 'w') as out_file:
             out_file.write('{\n')
             out_file.write('  "platform": {\n')
@@ -182,8 +194,8 @@ class pfBuildCore:
             out_file.write('  "core": {\n')
             out_file.write('    "magic": "APF_VER_1",\n')
             out_file.write('    "metadata": {\n')
-            out_file.write('      "platform_ids": ["%s"],\n' % (self.getConfigParam('Platform', 'short_name')))
-            out_file.write('      "shortname": "%s",\n' % (self.getConfigParam('Platform', 'short_name')))
+            out_file.write('      "platform_ids": ["%s"],\n' % (self.getShortName()))
+            out_file.write('      "shortname": "%s",\n' % (self.getShortName()))
             out_file.write('      "description": "%s",\n' % (self.getConfigParam('Platform', 'description')))
             out_file.write('      "author": "%s",\n' % (self.getConfigParam('Author', 'name')))
             out_file.write('      "url": "%s",\n' % (self.getConfigParam('Author', 'url')))
@@ -207,7 +219,7 @@ class pfBuildCore:
             out_file.write('      {\n')
             out_file.write('        "name": "default",\n')
             out_file.write('        "id": 0,\n')
-            out_file.write('        "filename": "%s.rbf_r"\n' % (self.getConfigParam('Platform', 'short_name')))
+            out_file.write('        "filename": "%s.rbf_r"\n' % (self.getShortName()))
             out_file.write('      }\n')
             out_file.write('    ]\n')
             out_file.write('  }\n')
@@ -217,7 +229,7 @@ class pfBuildCore:
         convert_image_command = 'pfConvertImage'
 
         src_image_file = os.path.join(self.config_file_folder, self.getConfigParam('Platform', 'image'))
-        dest_bin_file = os.path.join(platforms_image_folder, '%s.bin' % (self.getConfigParam('Platform', 'short_name')))
+        dest_bin_file = os.path.join(platforms_image_folder, '%s.bin' % (self.getShortName()))
         Utils.shellCommand([convert_image_command, src_image_file, dest_bin_file])
         self.addDependency(dep_file, src_image_file)
 
@@ -253,7 +265,7 @@ class pfBuildCore:
         self.dependency_count += 1
 
     def fullPlatformName(self) -> str:
-        return '%s.%s' % (self.getConfigParam('Author', 'name'), self.getConfigParam('Platform', 'short_name'))
+        return '%s.%s' % (self.getConfigParam('Author', 'name'), self.getShortName())
 
     def packagedFilename(self) -> str:
         return '%s-%s-%s.zip' % (self.fullPlatformName(), self.getConfigParam('Build', 'version'), self.today)
@@ -278,7 +290,7 @@ class pfBuildCore:
         with open(dependency_filename, 'w') as dep_file:
             print('Building bitstream file...')
             bitstream_source = self.bitstreamFile()
-            bitstream_dest = os.path.join(cores_folder, '%s.rbf_r' % (self.getConfigParam('Platform', 'short_name')))
+            bitstream_dest = os.path.join(cores_folder, '%s.rbf_r' % self.getShortName())
             Utils.shellCommand(['pfReverseBitstream', bitstream_source, bitstream_dest])
 
             self.addDependency(dep_file, bitstream_source)
