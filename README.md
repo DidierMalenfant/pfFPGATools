@@ -47,6 +47,8 @@ sudo apt install imagemagick
 
 - `pfCloneCoreTemplate` - Clone the core dev template from Github.
 
+- `pfQuartusEdit` - Edit Quartus project files.
+
 You can use the `--help` argument to get some usage info for each command.
 
 ### License
