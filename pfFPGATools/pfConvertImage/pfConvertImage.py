@@ -22,10 +22,12 @@ class pfConvertImage:
 
         try:
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hv', ['help', 'version', 'debug'])
+            opts, arguments = getopt.getopt(args, 'hv', ['debug', 'help', 'version', 'debug'])
 
             for o, a in opts:
-                if o in ('-h', '--help'):
+                if o in ('--debug'):
+                    continue
+                elif o in ('-h', '--help'):
                     pfConvertImage.printUsage()
                     sys.exit(0)
                 elif o in ('-v', '--version'):

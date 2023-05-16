@@ -24,10 +24,12 @@ class pfCloneCoreTemplate:
             self.tag_name = None
 
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hvb:t:', ['help', 'version', 'branch=', 'tag='])
+            opts, arguments = getopt.getopt(args, 'hvb:t:', ['debug', 'help', 'version', 'branch=', 'tag='])
 
             for o, a in opts:
-                if o in ('-h', '--help'):
+                if o in ('--debug'):
+                    continue
+                elif o in ('-h', '--help'):
                     pfCloneCoreTemplate.printUsage()
                     sys.exit(0)
                 elif o in ('-v', '--version'):

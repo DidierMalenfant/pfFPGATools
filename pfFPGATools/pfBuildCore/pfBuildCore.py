@@ -31,13 +31,15 @@ class pfBuildCore:
 
         try:
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hv', ['help', 'version', 'corefilename', 'bitstreamfile', 'debug'])
+            opts, arguments = getopt.getopt(args, 'hv', ['debug', 'help', 'version', 'corefilename', 'bitstreamfile', 'debug'])
 
             print_core_filename: bool = False
             print_bitstream_file: bool = False
 
             for o, a in opts:
-                if o in ('-h', '--help'):
+                if o in ('--debug'):
+                    continue
+                elif o in ('-h', '--help'):
                     pfBuildCore.printUsage()
                     sys.exit(0)
                 elif o in ('-v', '--version'):
