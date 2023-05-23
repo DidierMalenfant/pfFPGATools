@@ -36,10 +36,11 @@ class pfQuartusEdit:
             self.number_of_cpus: int = 0
 
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hvq:n:r:', ['debug', 'help', 'version', 'qsf=', 'numcpus='])
+            opts, arguments = getopt.getopt(args, 'dhvq:n:', ['debug', 'help', 'version', 'qsf=', 'numcpus='])
 
             for o, a in opts:
-                if o in ('--debug'):
+                if o in ('-d', '--debug'):
+                    # -- We ignore this argument because it was already dealt with in the calling main() code.
                     continue
                 elif o in ('-h', '--help'):
                     pfQuartusEdit.printUsage()
@@ -149,7 +150,7 @@ class pfQuartusEdit:
         print('')
         print('   --help/-h             - Show a help message.')
         print('   --version/-v          - Display the app\'s version.')
-        print('   --debug               - Enable extra debugging information.')
+        print('   --debug/-d            - Enable extra debugging information.')
         print('   --qsf/-q <file>       - Name of the QSF file to edit.')
         print('   --numcpus/-n <num>    - Number of CPU cores to use, or \'max\' to use all of them.')
         print('')

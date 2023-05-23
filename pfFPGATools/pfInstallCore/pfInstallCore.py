@@ -32,20 +32,20 @@ class pfInstallCore:
             self.eject_after_install: bool = False
 
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hved:', ['debug', 'help', 'version', 'eject', 'delete='])
+            opts, arguments = getopt.getopt(args, 'dhver:', ['debug', 'help', 'version', 'eject', 'remove='])
 
             for o, a in opts:
-                if o in ('--debug'):
+                if o in ('-d', '--debug'):
+                    # -- We ignore this argument because it was already dealt with in the calling main() code.
                     continue
                 elif o in ('-h', '--help'):
                     pfInstallCore.printUsage()
                     sys.exit(0)
                 elif o in ('-v', '--version'):
                     pfInstallCore.printVersion()
-                    sys.exit(0)
                 elif o in ('-e', '--eject'):
                     self.eject_after_install = True
-                elif o in ('-d', '--delete'):
+                elif o in ('-r', '--remove'):
                     self.name_of_core_to_delete = a
 
             nb_of_arguments: int = len(arguments)
@@ -186,8 +186,8 @@ class pfInstallCore:
         print('')
         print('   --help/-h             - Show a help message.')
         print('   --version/-v          - Display the app\'s version.')
-        print('   --debug               - Enable extra debugging information.')
-        print('   --delete/-d <name>    - Delete a core on the given volume.')
+        print('   --debug/-d            - Enable extra debugging information.')
+        print('   --remove/-r <name>    - Delete a core on the given volume.')
         print('')
 
     @classmethod

@@ -18,10 +18,11 @@ class pfReverseBitstream:
 
         try:
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hv', ['debug', 'help', 'version'])
+            opts, arguments = getopt.getopt(args, 'dhv', ['debug', 'help', 'version'])
 
             for o, a in opts:
-                if o in ('--debug'):
+                if o in ('-d', '--debug'):
+                    # -- We ignore this argument because it was already dealt with in the calling main() code.
                     continue
                 elif o in ('-h', '--help'):
                     pfReverseBitstream.printUsage()
@@ -75,7 +76,7 @@ class pfReverseBitstream:
         print('')
         print('   --help/-h          - Show a help message.')
         print('   --version/-v       - Display the app\'s version.')
-        print('   --debug            - Enable extra debugging information.')
+        print('   --debug/-d         - Enable extra debugging information.')
         print('')
 
     @classmethod

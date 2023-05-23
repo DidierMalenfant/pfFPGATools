@@ -22,10 +22,11 @@ class pfConvertImage:
 
         try:
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hv', ['debug', 'help', 'version', 'debug'])
+            opts, arguments = getopt.getopt(args, 'dhv', ['debug', 'help', 'version'])
 
             for o, a in opts:
-                if o in ('--debug'):
+                if o in ('-d', '--debug'):
+                    # -- We ignore this argument because it was already dealt with in the calling main() code.
                     continue
                 elif o in ('-h', '--help'):
                     pfConvertImage.printUsage()
@@ -33,9 +34,6 @@ class pfConvertImage:
                 elif o in ('-v', '--version'):
                     pfConvertImage.printVersion()
                     sys.exit(0)
-                elif o in ('--debug'):
-                    # -- We ignore this argument because it was already dealt with in the calling main() code.
-                    continue
 
             nb_of_arguments: int = len(arguments)
             if nb_of_arguments != 2:
@@ -96,7 +94,7 @@ class pfConvertImage:
         print('')
         print('   --help/-h          - Show a help message.')
         print('   --version/-v       - Display the app\'s version.')
-        print('   --debug            - Enable extra debugging information.')
+        print('   --debug/-d         - Enable extra debugging information.')
         print('')
 
     @classmethod

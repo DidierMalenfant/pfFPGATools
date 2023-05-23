@@ -33,13 +33,14 @@ class pfBuildCore:
 
         try:
             # -- Gather the arguments
-            opts, arguments = getopt.getopt(args, 'hv', ['debug', 'help', 'version', 'corefilename', 'bitstreamfile', 'debug'])
+            opts, arguments = getopt.getopt(args, 'dhv', ['debug', 'help', 'version', 'corefilename', 'bitstreamfile'])
 
             print_core_filename: bool = False
             print_bitstream_file: bool = False
 
             for o, a in opts:
-                if o in ('--debug'):
+                if o in ('-d', '--debug'):
+                    # -- We ignore this argument because it was already dealt with in the calling main() code.
                     continue
                 elif o in ('-h', '--help'):
                     pfBuildCore.printUsage()
@@ -51,9 +52,6 @@ class pfBuildCore:
                     print_core_filename = True
                 elif o in ('--bitstreamfile'):
                     print_bitstream_file = True
-                elif o in ('--debug'):
-                    # -- We ignore this argument because it was already dealt with in the calling main() code.
-                    continue
 
             nb_of_arguments: int = len(arguments)
             if print_core_filename is False and print_bitstream_file is False and nb_of_arguments != 2:
@@ -332,7 +330,7 @@ class pfBuildCore:
         print('')
         print('   --help/-h          - Show a help message.')
         print('   --version/-v       - Display the app\'s version.')
-        print('   --debug            - Enable extra debugging information.')
+        print('   --debug/-d         - Enable extra debugging information.')
         print('')
 
     @classmethod
