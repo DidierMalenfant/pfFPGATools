@@ -12,7 +12,7 @@ openFPGA is a registered trademark of [**Analogue**](https://analogue.co).
 
 ### Installation
 
-**pfFPGATools** requires at least [Python](https://python.org) 3.7. Make sure you have a [supported version](http://didier.malenfant.net/blog/nerdy/2022/08/17/installing-python.html) of **Python** before proceeding.
+**pfFPGATools** requires at least [Python](https://python.org) 3.10. Make sure you have a [supported version](http://didier.malenfant.net/blog/nerdy/2022/08/17/installing-python.html) of **Python** before proceeding.
 
 You can then install **pfFPGATools** by typing the following in a terminal window:
 ```console

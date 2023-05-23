@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "pf-fpga-tools"
 description = "A collection of tools for openFPGA projects"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 license = "GPL-3.0-or-later"
 keywords = ["openFPGA", "fpga", "analoguepocket"]
 authors = [
@@ -15,9 +15,6 @@ authors = [
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
