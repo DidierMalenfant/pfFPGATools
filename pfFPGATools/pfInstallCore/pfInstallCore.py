@@ -52,7 +52,7 @@ class pfInstallCore:
 
             if self.name_of_core_to_delete is None:
                 if nb_of_arguments != 2:
-                    raise RuntimeError('Invalid arguments.Maybe start with `pfInstallCore --help?')
+                    raise RuntimeError('Invalid arguments. Maybe start with `pfInstallCore --help?')
 
                 self.zip_filename = arguments[0]
                 self.volume_name = arguments[1]
