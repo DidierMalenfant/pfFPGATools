@@ -6,8 +6,6 @@ A set of tools for building and installing [**openFPGA**](https://www.analogue.c
 
 Copyright (c) 2023-present Didier Malenfant.
 
-openFPGA is a registered trademark of [**Analogue**](https://analogue.co).
-
 -----
 
 ### Installation
@@ -50,6 +48,13 @@ sudo apt install imagemagick
 - `pfQuartusEdit` - Edit Quartus project files.
 
 You can use the `--help` argument to get some usage info for each command.
+
+### Trademarks
+
+**openFPGA** and the **openFPGA** logo are trademarks of [**Analogue**](https://www.analogue.co/) Enterprises Ltd.
+**Quartus** is a registered trademark of [**Intel**](https://intel.com/).
+
+This project is not affiliated, associated with, sponsored or supported by neither **Analogue** nor **Intel**.
 
 ### License
 
