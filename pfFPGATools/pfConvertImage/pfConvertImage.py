@@ -5,10 +5,8 @@
 import os
 import sys
 import getopt
-import traceback
 
 from pfFPGATools.__about__ import __version__
-from pfFPGATools.utils import Utils
 
 from PIL import Image
 
@@ -50,9 +48,6 @@ class pfConvertImage:
             sys.exit(0)
 
     def main(self) -> None:
-        # -- We need brew to potentially install other things
-        Utils.requireCommand('convert')
-
         print('Reading \'' + self.img_filename + '\'.')
         img = Image.open(self.img_filename).convert("RGB")
 
