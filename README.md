@@ -6,6 +6,8 @@ A set of tools for building and installing [**openFPGA**](https://www.analogue.c
 
 Copyright (c) 2023-present Didier Malenfant.
 
+#### This project is obsolete and has been replaced by the more generic [pf-tools](https://pypi.org/project/pf-tools/).
+
 -----
 
 ### Installation
@@ -15,20 +17,6 @@ Copyright (c) 2023-present Didier Malenfant.
 You can then install **pfFPGATools** by typing the following in a terminal window:
 ```console
 pip install pf-fpga-tools
-```
-
-### Installation (macOS)
-
-Also install the following tool dependencies via [brew](https://brew.sh):
-```console
-brew install imagemagick
-```
-
-### Installation (Ubuntu Linux)
-
-Also install the following tool dependencies:
-```
-sudo apt install imagemagick
 ```
 
 ### Usage
