@@ -6,7 +6,7 @@ A set of tools for building and installing [**openFPGA**](https://www.analogue.c
 
 Copyright (c) 2023-present Didier Malenfant.
 
-#### This project is obsolete and has been replaced by the more generic [pf-tools](https://pypi.org/project/pf-tools/).
+#### This project is obsolete and has been replaced by the more generic [pf-dev-tools](https://pypi.org/project/pf-dev-tools/).
 
 -----
 
